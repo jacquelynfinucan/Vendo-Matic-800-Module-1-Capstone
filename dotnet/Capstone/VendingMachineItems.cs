@@ -16,8 +16,8 @@ namespace Capstone
             this.Price = price;
             this.Inventory = inventory;
         }
-
-        public Dictionary<string, VendingMachineItems> dictonaryOfVendingItems = new Dictionary<string, VendingMachineItems>();
+        
+        
 
 
 
