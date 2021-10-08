@@ -7,7 +7,9 @@ namespace Capstone
         static void Main(string[] args)
         {
 
-
+            VendingMachine vendingMachine = new VendingMachine();
+            vendingMachine.ReadInputFile();
+            
             Console.WriteLine("Welcome to the Vendo-Matic-800!");
             Console.WriteLine("(1) Display Vending Machine Items\n(2) Purchase\n(3) Exit");
             string mainMenuInput = Console.ReadLine();
@@ -18,7 +20,8 @@ namespace Capstone
             {
                 if (mainMenuInput == "1")
                 {
-
+                    vendingMachine.DisplayMenu();
+                    
                     Console.WriteLine("Step 1");
                     mainMenuLoop = false;
                 }
