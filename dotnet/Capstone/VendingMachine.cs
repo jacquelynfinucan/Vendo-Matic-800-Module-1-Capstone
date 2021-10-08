@@ -7,13 +7,12 @@ namespace Capstone
 {
     public class VendingMachine
     {
-        
+        VendingMachineItems vendingMachineItems = new VendingMachineItems("", 0.0M, 0);
 
         public List<string> listOfItems = new List<string>();
 
         public List<string> displayMenu = new List<string>();
 
-        public string[] arrayOfSplit = new string[4];
         public List<string> ReadInputFile()
         {
 
@@ -42,12 +41,27 @@ namespace Capstone
             }
 
         }
-        public string[] ListSplit()
+        public Dictionary<string, VendingMachineItems> CreateDictionaryOfItems()
         {
             foreach(string line in listOfItems)
             {
-                line.Split(@"|");
+                string[] arrayOfSplit = line.Split(@"|");
+                for (int i = 0; i < arrayOfSplit.Length; i++)
+                {
+
+                    string slotNumber = arrayOfSplit[0];
+                    string nameOfItem = arrayOfSplit[1];
+                    decimal costOfItem = decimal.Parse(arrayOfSplit[2]);
+                    string typeOfItem = arrayOfSplit[3];
+                    int inventory = 5;
+                    Chips chip = new Chips(nameOfItem, costOfItem, inventory);
+                    vendingMachineItems.dictonaryOfVendingItems[slotNumber] = chip;
+                    //will have to find index of item type first
+                    Console.WriteLine("This is chip");
+                    
+                }
             }
+            return vendingMachineItems.dictonaryOfVendingItems;
         }
 
 

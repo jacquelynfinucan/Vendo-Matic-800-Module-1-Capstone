@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Capstone
 {
-    public abstract class VendingMachineItems
+    public class VendingMachineItems
     {
         public string ItemName { get; set; }
         public decimal Price { get; set; }
@@ -16,9 +16,10 @@ namespace Capstone
             this.Price = price;
             this.Inventory = inventory;
         }
-        
 
-        
+        public Dictionary<string, VendingMachineItems> dictonaryOfVendingItems = new Dictionary<string, VendingMachineItems>();
+
+
 
     }
 }
