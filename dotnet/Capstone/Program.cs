@@ -6,6 +6,10 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Clear();
+
             VendingMachine vendingMachine = new VendingMachine();
             vendingMachine.ReadInputFile();
             vendingMachine.CreateDictionaryOfItems();
@@ -27,6 +31,7 @@ namespace Capstone
                     if (mainMenuInput == "1") //DISPLAY VENDING MACHINE ITEMS
                     {
                         vendingMachine.DisplayMenu();
+                        Console.WriteLine();
                         bool displayMenuLoop = true;
                         while (displayMenuLoop)
                         {
@@ -40,7 +45,9 @@ namespace Capstone
                             }
                             else
                             {
-                                Console.WriteLine("Invalid option, please select another option.");
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("**INVALID OPTION, PLEASE SELECT ANOTHER OPTION.**");
+                                Console.ForegroundColor = ConsoleColor.Yellow;
                             }
                         }
                         mainMenuLoop = false;
@@ -82,7 +89,9 @@ namespace Capstone
                                     }
                                     else
                                     {
-                                        Console.WriteLine("**Invalid option, please select another option.**");
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("**INVALID OPTION, PLEASE SELECT ANOTHER OPTION.**");
+                                        Console.ForegroundColor = ConsoleColor.Yellow;
                                         Console.WriteLine();
                                     }
                                 }
@@ -97,7 +106,9 @@ namespace Capstone
                             }
                             else
                             {
-                                Console.WriteLine("**Invalid option, please select another option.**");
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("**INVALID OPTION, PLEASE SELECT ANOTHER OPTION.**");
+                                Console.ForegroundColor = ConsoleColor.Yellow;
                             }
                         }
                     }
@@ -114,7 +125,9 @@ namespace Capstone
                     }
                     else
                     {
-                        Console.WriteLine("**Please enter a valid option.**");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("**INVALID OPTION, PLEASE ENTER ANOTHER OPTION.**");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("(1) Display Vending Machine Items\n(2) Purchase\n(3) Exit");
                         mainMenuInput = Console.ReadLine();
                     }

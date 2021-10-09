@@ -33,11 +33,11 @@ namespace Capstone
             {
                 if(item.Value.Inventory == 0)
                 {
-                    Console.WriteLine($"{item.Key}\t{item.Value.ItemName}\t\t${item.Value.Price}\tCurrent Stock: *SOLD OUT*");
+                    Console.WriteLine($"{ item.Key}  {item.Value.ItemName}  ${item.Value.Price}  Current Stock: *SOLD OUT*"); //"{0,3} {1,16} {2,4} {3, 25} ", 
                 }
                 else
                 {
-                    Console.WriteLine($"{item.Key}\t{item.Value.ItemName}\t\t${item.Value.Price}\tCurrent Stock: {item.Value.Inventory}");
+                    Console.WriteLine($"{item.Key}  {item.Value.ItemName}  ${item.Value.Price}  Current Stock: {item.Value.Inventory}");
                 }
             }
         }
@@ -75,7 +75,9 @@ namespace Capstone
                 }
                 else
                 {
-                    Console.WriteLine("Invalid type");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("**INVALID TYPE.**");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                 }
             }
             return dictonaryOfVendingItems;
@@ -102,16 +104,21 @@ namespace Capstone
                         {
                             currentBalance += moneyInput;
                             Console.WriteLine($"Current Balance: ${currentBalance}");
+                            Console.WriteLine();
                             LogTransaction($"FEED MONEY:", moneyInput, currentBalance);
                         }
                         else
                         {
-                            Console.WriteLine("**Invalid format.**");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("**INVALID FORMAT. Please enter an amount in whole dollars.**");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                         }
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("**Invalid format.**");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("**INVALID FORMAT. Please enter an amount in whole dollars.**");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                     }
                 }
             }
@@ -121,19 +128,19 @@ namespace Capstone
         {
             if (objectType == "Chip")
             {
-                return "Crunch Crunch, Yum!";
+                return "CRUNCH CRUNCH, YUM!";
             }
             else if(objectType == "Drink")
             {
-                return "Glug Glug, Yum!";
+                return "GLUG GLUG, YUM!";
             }
             else if(objectType == "Gum")
             {
-                return "Chew Chew, Yum!";
+                return "CHEW CHEW, YUM!";
             }
             else if(objectType == "Candy")
             {
-                return "Munch Munch, Yum!";
+                return "MUNCH MUNCH, YUM!";
             }
             else
             {
@@ -152,13 +159,17 @@ namespace Capstone
         {
             if(dictonaryOfVendingItems[userInput].Inventory == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("**That item is SOLD OUT. Please select another product.**");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine();
                 //break & bring back to select product menu
             }
             else if(currentBalance < dictonaryOfVendingItems[userInput].Price)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("**Sorry you do not have enough money for that item. Please feed more money or select another product.**");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine();
                 //break & bring back to select product menu
             }
@@ -168,8 +179,10 @@ namespace Capstone
                 currentBalance -= dictonaryOfVendingItems[userInput].Price;
                 dictonaryOfVendingItems[userInput].Inventory --;
                 Console.WriteLine();
-                Console.WriteLine($"Purchased: {dictonaryOfVendingItems[userInput].ItemName} Price: {dictonaryOfVendingItems[userInput].Price}");
+                Console.WriteLine($"Purchased: {dictonaryOfVendingItems[userInput].ItemName} @ Price: {dictonaryOfVendingItems[userInput].Price}");
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(GetFunMessage(dictonaryOfVendingItems[userInput].ItemType));
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine();
                 Console.WriteLine($"There are {dictonaryOfVendingItems[userInput].Inventory} {dictonaryOfVendingItems[userInput].ItemName}(s) remaining.");
                 Console.WriteLine($"Current Balance: {currentBalance}");
