@@ -10,13 +10,12 @@ namespace Capstone
             vendingMachine.ReadInputFile();
             vendingMachine.CreateDictionaryOfItems();
 
-            //Console.WriteLine(vendingMachine.dictonaryOfVendingItems["A1"].Inventory);
-
             Console.WriteLine("Welcome to the Vendo-Matic-800!");
             Console.WriteLine();
             bool giantLoop = true;
             while (giantLoop)
             {
+                Console.WriteLine("Main Menu:");
                 Console.WriteLine("(1) Display Vending Machine Items\n(2) Purchase\n(3) Exit");
                 string mainMenuInput = Console.ReadLine();
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -52,22 +51,24 @@ namespace Capstone
                         while (purchaseMenuLoop)
                         {
                             Console.WriteLine("(1) Feed Money\n(2) Select Product\n(3) Finish Transaction");
+                            Console.WriteLine($"Current Money Provided: ${vendingMachine.currentBalance}");
                             string purchaseMenuInput = Console.ReadLine();
                             if (purchaseMenuInput == "1") //FEED MONEY
                             {
                                 vendingMachine.RepeatedlyFeedMoney();
                             }
-                            else if (purchaseMenuInput == "2") //SELECT PRODUCT
+                            else if (purchaseMenuInput == "2") //SELECT PRODUCT MENU
                             {
+                                
                                 vendingMachine.DisplayMenu();
                                 Console.WriteLine();
-                                Console.WriteLine($"Current Balance: ${vendingMachine.currentBalance}.00");
+                                Console.WriteLine($"Current Balance: ${vendingMachine.currentBalance}");
                                 Console.WriteLine();
                                 bool selectProductLoop = true;
                                 while (selectProductLoop)
                                 {
                                     
-                                    Console.WriteLine("Please enter your selected product's slot number.");//clarify slot # for our user
+                                    Console.WriteLine("Please enter your selected product's slot number, ex; A1.");
                                     Console.WriteLine("Or you can enter 'B' to get back to the Purchase Menu to feed money or exit.");
                                     string selectProductInput = Console.ReadLine().ToUpper();
 
@@ -78,7 +79,6 @@ namespace Capstone
                                     else if (vendingMachine.dictonaryOfVendingItems.ContainsKey(selectProductInput)) //If their selection was valid
                                     {
                                         vendingMachine.UserSlotSelection(selectProductInput);
-                                        
                                     }
                                     else
                                     {
@@ -86,33 +86,35 @@ namespace Capstone
                                         Console.WriteLine();
                                     }
                                 }
-
-
                                 mainMenuLoop = false;
-                                
                             }
                             else if (purchaseMenuInput == "3") //FINISH TRANSACTION
                             {
-
+                                vendingMachine.ReturnChange();
+                                vendingMachine.ResetInventory();
                                 mainMenuLoop = false;
                                 purchaseMenuLoop = false;
                             }
                             else
                             {
-                                Console.WriteLine("Invalid option, please select another option.");
+                                Console.WriteLine("**Invalid option, please select another option.**");
                             }
                         }
-                        //mainMenuLoop = false;
                     }
                     else if (mainMenuInput == "3") //EXIT
                     {
-
-                        Console.WriteLine("Step 3");
+                        if(vendingMachine.currentBalance != 0)
+                        {
+                            vendingMachine.ReturnChange();
+                        }
+                        
+                        vendingMachine.ResetInventory();
                         mainMenuLoop = false;
+                        giantLoop = false;
                     }
                     else
                     {
-                        Console.WriteLine("Please enter a valid option.");
+                        Console.WriteLine("**Please enter a valid option.**");
                         Console.WriteLine("(1) Display Vending Machine Items\n(2) Purchase\n(3) Exit");
                         mainMenuInput = Console.ReadLine();
                     }

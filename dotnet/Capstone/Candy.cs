@@ -6,11 +6,9 @@ namespace Capstone
 {
     public class Candy : VendingMachineItems
     {
-        public string FunMessage { get; } = "Munch Munch, Yum!";
-        public Candy(string itemName, decimal price, int inventory)
-            : base(itemName, price, inventory)
+        public Candy(string itemName, decimal price, int inventory, string itemType)
+            : base(itemName, price, inventory, itemType)
         {
-
         }
     }
 }
