@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Capstone;
 
 namespace CapstoneTests
 {
@@ -6,8 +7,12 @@ namespace CapstoneTests
     public class ReturnChangeTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ReturnChangeTest()
         {
+            VendingMachine vendingMachine = new VendingMachine();
+            vendingMachine.currentBalance = 10.00M;
+            decimal result = vendingMachine.ReturnChange();
+            Assert.AreEqual(0, result);
         }
     }
 }

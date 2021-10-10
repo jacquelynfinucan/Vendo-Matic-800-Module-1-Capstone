@@ -33,7 +33,7 @@ namespace Capstone
             {
                 if(item.Value.Inventory == 0)
                 {
-                    Console.WriteLine($"{ item.Key}  {item.Value.ItemName}  ${item.Value.Price}  Current Stock: *SOLD OUT*"); //"{0,3} {1,16} {2,4} {3, 25} ", 
+                    Console.WriteLine($"{ item.Key}  {item.Value.ItemName}  ${item.Value.Price}  Current Stock: *SOLD OUT*"); 
                 }
                 else
                 {
@@ -100,7 +100,7 @@ namespace Capstone
                     try
                     {
                         moneyInput = decimal.Parse(feedMoneyInput) + 0.00M;
-                        if (moneyInput % 1 == 0)
+                        if (moneyInput % 1 == 0 && moneyInput > 0)
                         {
                             currentBalance += moneyInput;
                             Console.WriteLine($"Current Balance: ${currentBalance}");

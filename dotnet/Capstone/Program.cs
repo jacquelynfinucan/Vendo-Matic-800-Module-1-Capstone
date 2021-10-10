@@ -63,6 +63,7 @@ namespace Capstone
                             if (purchaseMenuInput == "1") //FEED MONEY
                             {
                                 vendingMachine.RepeatedlyFeedMoney();
+
                             }
                             else if (purchaseMenuInput == "2") //SELECT PRODUCT MENU
                             {
